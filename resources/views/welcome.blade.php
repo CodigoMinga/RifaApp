@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>GRAN RIFA SOLIDARIA A JOAQUIN MORAN </title>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -151,12 +152,15 @@
                 <div style="display:none" id="sesionon">
                     <p>Una vez descarges la Rifa tu te haras responsable de ella.</p>
                     <br>
-                    <button class="btn" style="display:inline-block" id="generarRifa">
+                    <button class="btn" style="width:150px;background:white" id="generarRifa">
                         <img src="{{ url('/') }}/img/pdf.svg" alt="">
                         Descargar una Rifa
                     </button>
                     <br>
-                    <br>
+                    <button class="btn btn-danger" id="cerrar">
+                        <img src="{{ url('/') }}/img/off.svg" alt="">
+                        Cerrar Sesion
+                    </button>
                     <button class="btn btn-danger" id="cerrar">
                         <img src="{{ url('/') }}/img/off.svg" alt="">
                         Cerrar Sesion
@@ -347,6 +351,7 @@
         const generarRifa = document.getElementById('generarRifa');
         const Numero = document.getElementById('Numero');
         const cerrar = document.getElementById('cerrar');
+        var espera=false;
 
         document.addEventListener("DOMContentLoaded", function() {
             for(var i=1;i<21;i++){
@@ -422,17 +427,26 @@
 
         generarRifa.addEventListener("click", async function(e){
             e.preventDefault();
-            if(espera){
-                espera=false;
+            if(!espera){
+                espera=true;
                 var user = firebase.auth().currentUser;
                 if (user != null) {
-                    await fs.collection("rifas").doc().set({
-                        numero:correlativo+1,  
+                    var senddata = {
+                        _token:$('meta[name="csrf-token"]').attr('content'),
                         nombre:user.displayName,
                         email:user.email,
-                        uid:user.uid
+                        identificador:user.uid
+                    }
+                    $.post( "{{url('/')}}/rifa/add",senddata,function( data ){
+                        if(typeof data === 'object'){
+                            if(data.id)
+                            Numero.innerHTML = (data.id);
+                            pruebaDivAPdf(data.id);
+                        }else{
+                            alert('Error al crear la Rifa, intente mas tarde');
+                            espera=false;
+                        }
                     });
-                    pruebaDivAPdf(correlativo+1);
                 }else{
                     console.log('sin usuario');
                 }
@@ -447,7 +461,7 @@
                 image:        { type: 'jpeg', quality: 1 },
             };
             html2pdf().set(opt).from(imprimir).save();
-            espera=true;
+            espera=false;
         }
     </script>
 </html>

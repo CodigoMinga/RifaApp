@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/listado', function () {
+    return view('listado');
+});
+
+Route::post('rifa/add','RifasController@add');
+Route::get('rifa/list','RifasController@list');
