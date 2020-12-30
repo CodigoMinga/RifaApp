@@ -94,7 +94,7 @@
                 color:black;
             }
             .btn-danger{
-                background: red;
+                background: #b71c1c;
                 color:white;
             }
             
@@ -157,14 +157,19 @@
                         Descargar una Rifa
                     </button>
                     <br>
-                    <button class="btn btn-danger" id="cerrar">
-                        <img src="{{ url('/') }}/img/off.svg" alt="">
-                        Cerrar Sesion
-                    </button>
-                    <button class="btn btn-danger" id="cerrar">
-                        <img src="{{ url('/') }}/img/off.svg" alt="">
-                        Cerrar Sesion
-                    </button>
+                    <div class="flex-center">
+                        <button class="btn btn-danger" id="cerrar">
+                            <img src="{{ url('/') }}/img/off.svg" alt="">
+                            Cerrar Sesion
+                        </button>
+                        <div style="display:block;width:2rem;heigth:2rem;">
+
+                        </div>
+                        <button class="btn" onclick="location='{{ url('/') }}/listado'" style="background:#0d47a1;color:white">
+                            <img src="{{ url('/') }}/img/lista.svg" alt="">
+                            Lista de Rifas
+                        </button>
+                    </div>
                 </div>
             </div>
             <h4 class="subtitulo">VALOR: $2.000 SORTEO 05 FEBRERO 2021</h4>
