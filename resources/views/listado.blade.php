@@ -131,7 +131,10 @@
         <div class="contenedor" align="center">
             <h1 class="titulo">GRAN RIFA</h1>
             <h4 class="subtitulo">A BENEFICIO DE LA REHABILITACIÓN DE JOAQUIN MORAN QUIEN SE ENCUENTRA CON LESIÓN MEDULAR </h4>
-            <br>
+            <button class="btn" onclick="window.history.back()" style="color:white;background:#f57f17 ">
+                <img src="{{ url('/') }}/img/atras.svg" alt="">
+                Volver Atras
+            </button>
             <h4 class="subtitulo">Lista de personas que estan ayudando</h4>
             <div class="informacion bg-secundario" align="center" style="padding:8px;border-radius:8px;">
                 <table id="tabla" >

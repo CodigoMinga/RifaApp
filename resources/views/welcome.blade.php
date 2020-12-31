@@ -132,7 +132,7 @@
                 <p><b>P.D:</b> Al depositar, por favor, indicar en el comentario el número de rifa asociado</p>
             </div>
             <br>
-            <h4 class="subtitulo">Para ayudar puedes generar una Rifa utilizando tu facebook o Gmail personal</h4>
+            <h4 class="subtitulo">Para ayudar puedes generar una Rifa utilizando tu facebook o cuenta de google personal</h4>
             <div class="informacion bg-secundario" align="center" style="max-width:400px;padding:8px;border-radius:8px;">
                 <div style="display:block" id="sesionoff">
                     <h1>Inicia Sesion</h1>
